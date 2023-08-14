@@ -21,7 +21,7 @@ with open('', 'r') as csvfile:
     counter = 1
     switch = csv.reader(csvfile)
 
-    for serial, port, name, type, vlan, PoE_enabled, allowed_vlans in switch:
+    for serial, port, name, type, vlan, allowed_vlans, PoE_enabled in switch:
         counter = counter + 1
 
         if serial == "":
