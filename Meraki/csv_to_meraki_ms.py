@@ -32,6 +32,7 @@ with open('', 'r') as csvfile:
             quit()
         my_serial = serial
         my_port = port
+        my_name = name
         my_type = type
         my_vlan = vlan
         my_poe_enabled = bool(PoE_enabled)
@@ -41,10 +42,10 @@ with open('', 'r') as csvfile:
         # Will add the same tag to all ports, if not needed leave quotes
         my_tag = ''
         split_tag = my_tag.split(",")
-        if name == '':
-            response = dashboard.switch.updateDeviceSwitchPort(my_serial, my_port, tags=split_tag, enabled=True, type=my_type, vlan=my_vlan, poeEnabled=my_poe_enabled, allowedVlans= my_allowed_vlans)
+
+        if vlan == '':
+            response = dashboard.switch.updateDeviceSwitchPort(my_serial, my_port, name=my_name, tags=split_tag, enabled=True, type=my_type, poeEnabled=my_poe_enabled, allowedVlans= my_allowed_vlans)
         else:
-            my_name = name
             response = dashboard.switch.updateDeviceSwitchPort(my_serial, my_port, name=my_name, tags=split_tag, enabled=True, type=my_type, vlan=my_vlan, poeEnabled=my_poe_enabled, allowedVlans= my_allowed_vlans)
         # Sleep for ~300ms to avoid rate-limit
         print(response)
